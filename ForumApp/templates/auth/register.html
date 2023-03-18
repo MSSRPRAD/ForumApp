@@ -11,12 +11,11 @@
             {% for mesg in get_flashed_messages() %}
               <h1 style="color: crimson">{{ mesg }}</h1>
             {% endfor %}
-            <form action="auth/register" method="POST">
+            <form action="/register" method="POST">
                <input type="text" name="username" id="username">
                <input type="password" name="password" id="password">
                <input type="submit" value="Sign Up">
                 <div>
-                <button><a href="{{url_for('auth/login')}}">I already have an account!</a></button>
                 </div>
            </form>
         </div>
