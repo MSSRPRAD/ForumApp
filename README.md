@@ -7,10 +7,10 @@ Implemented from flask_admin
 Navigate to '/admin/' 
 
 LOGIN FUNCTIONALITY:
-Navigate to '/login/'
+Navigate to '/login'
 
 LOGOUT FUNCTIONALITY:
-Navigate to '/logout/'
+Navigate to '/logout'
 
 REGISTER FUNCTIONALITY:
-Navigate to '/register/'
+Navigate to '/register'
