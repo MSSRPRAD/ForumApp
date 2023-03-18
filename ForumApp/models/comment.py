@@ -1,5 +1,6 @@
 from flask import Flask
 from ForumApp.extensions import db
+import datetime
 
 app = Flask(__name__)
 
@@ -8,3 +9,4 @@ class Comment(db.Model):
     content = db.Column(db.String(1000), nullable = False)
     post_id = db.Column(db.Integer, db.ForeignKey('comment.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('comment.id'))
+    date_created = db.Column(db.DateTime, default=datetime.datetime.utcnow)
