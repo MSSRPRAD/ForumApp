@@ -14,8 +14,10 @@ from ForumApp.extensions import db
 
 class MyModelView(ModelView):
     def is_accessible(self):
-        # return current_user.is_authenticated()
-        return True
+        if current_user.is_authenticated and current_user.role_id == 1:
+            return True
+        else:
+            return False
 
 def create_app(config_class=Config):
     app = Flask(__name__)
