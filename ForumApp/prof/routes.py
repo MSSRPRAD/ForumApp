@@ -9,8 +9,8 @@ from ForumApp.models.user import User
 def load_user(user_id):
     return User.query.get(int(user_id))
 
-@login_required
 @bp.route('/profile')
+@login_required
 def index():
     role_name = "temp"
     if current_user.role_id == 1:

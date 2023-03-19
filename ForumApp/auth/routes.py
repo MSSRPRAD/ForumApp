@@ -54,7 +54,7 @@ def register():
         password = request.form['password']
         hashed_password = bcrypt.generate_password_hash(password)
         new_user = User(username=username, password = hashed_password)
-        role = Role.query.filter_by(role="ADMIN").first()
+        role = Role.query.filter_by(role="USER").first()
         new_user.role = role
         profile = Profile(about = "This is my profile!")
         new_user.profile = profile
