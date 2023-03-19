@@ -1,7 +1,5 @@
 from ForumApp.auth import bp
 from flask import render_template, flash
-
-from flask_admin import Admin
 from flask import render_template, redirect, url_for, session, request, Flask
 from flask_login import login_required, login_user, LoginManager, current_user, logout_user
 from flask_bcrypt import Bcrypt
@@ -47,7 +45,7 @@ def login():
 @app.route('/logout', methods = ['GET', 'POST'])
 def logout():
     logout_user()
-    return redirect(url_for('login'))
+    return redirect(url_for('auth.login'))
 
 @bp.route('/register', methods = ['GET', 'POST'])
 def register():

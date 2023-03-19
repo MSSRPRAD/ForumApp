@@ -1,4 +1,4 @@
-from ForumApp.profile import bp
+from ForumApp.prof import bp
 from flask import render_template
 from flask_login import login_required, login_user, LoginManager, current_user, logout_user
 from flask_bcrypt import Bcrypt
@@ -8,6 +8,7 @@ from ForumApp.models.user import User
 @app.login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
+
 @login_required
 @bp.route('/profile')
 def index():
