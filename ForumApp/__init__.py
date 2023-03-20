@@ -56,4 +56,8 @@ def create_app(config_class=Config):
         from ForumApp.board import bp as board_bp
         app.register_blueprint(board_bp)
 
+        # Post Blueprint
+        from ForumApp.posts import bp as post_bp
+        app.register_blueprint(post_bp)
+
     return app

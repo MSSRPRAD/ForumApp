@@ -15,7 +15,6 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 @bp.route('/board')
-@login_required
 def board():
     boards = Board.query.all()
     return render_template('board/board.html', boards = boards)
@@ -38,3 +37,4 @@ def create_board():
             db.session.add(board)
             db.session.commit()
             return render_template('board/board.html', boards = Board.query.all())
+

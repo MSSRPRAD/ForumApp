@@ -16,7 +16,7 @@
 </form>
 
 {% for board in boards %}
-    <h2>{{board.name}}</h2>
+    <a href = 'board/{{board.id}}'><h2>{{board.name}}</h2></a>
     <p>{{board.about}}</p>
 {% endfor %}
 
