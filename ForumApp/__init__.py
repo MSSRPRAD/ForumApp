@@ -52,8 +52,8 @@ def create_app(config_class=Config):
         from ForumApp.prof import bp as profile_bp
         app.register_blueprint(profile_bp)
 
-        # # Admin Blueprint
-        # from ForumApp.admin import bp as admin_bp
-        # app.register_blueprint(admin_bp)
+        # Board Bluepring
+        from ForumApp.board import bp as board_bp
+        app.register_blueprint(board_bp)
 
     return app

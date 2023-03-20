@@ -5,6 +5,7 @@ from flask_bcrypt import Bcrypt
 from flask import current_app as app
 bcrypt = Bcrypt(app)
 from ForumApp.models.user import User
+from ForumApp.models.profile import Profile
 @app.login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
@@ -17,4 +18,5 @@ def index():
         role_name = "ADMIN"
     elif current_user.role_id == 2:
         role_name = "USER"
-    return render_template('profile/profile.html', user = current_user, role_name = role_name)
+    profile = Profile.query.filter_by(user_id=current_user.id).first()
+    return render_template('profile/profile.html', user = current_user, role_name = role_name, profile=profile)

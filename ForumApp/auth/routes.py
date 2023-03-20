@@ -57,6 +57,7 @@ def register():
         role = Role.query.filter_by(role="USER").first()
         new_user.role = role
         profile = Profile(about = "This is my profile!")
+        profile.about = request.form['about']
         new_user.profile = profile
         existing_user = User.query.filter_by(username=username).first()
         if (existing_user):
