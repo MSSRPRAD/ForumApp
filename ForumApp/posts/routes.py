@@ -17,6 +17,7 @@ def load_user(user_id):
 
 @bp.route('/board/<int:id>/create', methods = ['GET', 'POST'])
 def add_post(id):
+    red = '/board/' + str(id)
     board = Board.query.filter_by(id=id).first()
     if request.method == 'POST':
         post = Post()
@@ -27,12 +28,13 @@ def add_post(id):
         db.session.add(post)
         db.session.commit()
         posts = board.posts
-        return render_template('post/post.html', posts = posts, board = board)
+        return redirect(red)
     posts = board.posts
-    return render_template('post/post.html', posts=posts, board=board)
+    return redirect(red)
+
 @bp.route('/board/<int:id>')
 @login_required
 def show_board(id):
     board = Board.query.filter_by(id=id).first()
     posts = board.posts
-    return render_template('post/post.html', posts=posts, board = board)
+    return render_template('src/post/post.html', posts=posts, board = board)

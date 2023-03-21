@@ -17,11 +17,12 @@ def load_user(user_id):
 @bp.route('/board')
 def board():
     boards = Board.query.all()
-    return render_template('board/board.html', boards = boards)
+    return render_template('src/board/board.html', boards = boards)
 
 @bp.route('/board/create', methods = ['GET', 'POST'])
 @login_required
 def create_board():
+    red = '/board'
     if request.method == 'POST':
         name = request.form['name']
         about = request.form['about']
@@ -32,9 +33,9 @@ def create_board():
         existing_board = Board.query.filter_by(name=name).first()
         if existing_board:
             flash("That name is already taken, please choose another")
-            return render_template('board/board.html', boards = Board.query.all())
+            return redirect(red)
         else:
             db.session.add(board)
             db.session.commit()
-            return render_template('board/board.html', boards = Board.query.all())
+            return redirect(red)
 

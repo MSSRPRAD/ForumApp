@@ -1,0 +1,25 @@
+{% extends "src/base.html" %}
+
+{% block body %}
+
+<div class="bg-gray-200 h-screen">
+    <div style="text-align: center;"><h1><b>LOGIN AUTHENTICATION PAGE</b></h1></div>
+    <div class="container mx-auto w-full h-full">
+      <div class="max-w-screen-sm mx-auto w-full h-full flex flex-col items-center justify-center">
+        <div class="bg-white p-5 shadow-md w-full">
+          <h1 class="text-gray-900 mb-8" style="text-align: center">Log into your account</h1>
+            {% for mesg in get_flashed_messages() %}
+              <h1 style="color: crimson">{{ mesg }}</h1>
+            {% endfor %}
+            <form action="/login" method="POST">
+               <input type="text" name="username" id="username">
+               <input type="password" name="password" id="password">
+               <input type="submit" value="Log In">
+                <div>
+                </div>
+           </form>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

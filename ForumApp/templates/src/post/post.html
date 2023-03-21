@@ -1,0 +1,31 @@
+{% extends "src/base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<form action="/board/{{board.id}}/create" method="POST">
+    <h1>TITLE OF POST:</h1>
+    <input type="text" name="title" id="title">
+    <h1>CONTENT:</h1>
+    <input type="text" name="content" id="content">
+    <p>CREATE!</p>
+    <input type="submit" value="Create">
+</form>
+
+<h1>{{board.name}}</h1>
+<p><b>About:</b> {{board.about}}</p>
+
+
+
+{% for post in posts %}
+    <a href="/board/{{board.id}}/{{post.id}}" <h1> {{post.title}} </h1></a>
+    <p>{{post.date_created}}</p>
+    <p>Created By:</p>
+    <p>{{post.user_id}}</p>
+    <p></p>
+{% endfor %}
+
+{% endblock %}

@@ -19,4 +19,4 @@ def index():
     elif current_user.role_id == 2:
         role_name = "USER"
     profile = Profile.query.filter_by(user_id=current_user.id).first()
-    return render_template('profile/profile.html', user = current_user, role_name = role_name, profile=profile)
+    return render_template('src/profile/profile.html', user = current_user, role_name = role_name, profile=profile)

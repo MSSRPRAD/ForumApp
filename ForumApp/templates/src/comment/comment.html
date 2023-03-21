@@ -1,0 +1,33 @@
+{% extends "src/base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+
+<form action="/board/{{board.id}}/{{post.id}}/create" method="POST">
+    <h1>Your Comment::</h1>
+    <input type="text" name="content" id="content">
+    <p>Send!</p>
+    <input type="submit" value="Create">
+</form>
+
+<h1>BOARD:</h1>
+<p>{{board.name}}</p>
+<h1>POST:</h1>
+<b><p>{{post.title}}</p></b>
+<p>{{post.content}}</p>
+<p>Posted by:</p>
+<p>{{post.user_id}}</p>
+<p>On:</p>
+<p>{{post.date_created}}</p>
+
+{% for comment in comments %}
+    <h2>{{comment.content}}</h2>
+    <p>{{comment.user_id}}</p>
+    <p>{{comment.date_created}}</p>
+{% endfor %}
+
+{% endblock %}

@@ -39,7 +39,7 @@ def login():
                 flash("Wrong Password. Please Try Again!")
         else:
             flash("Invalid Credentials. Please Try Again!")
-    return render_template('auth/login.html')
+    return render_template('src/auth/login.html')
 
 @login_required
 @app.route('/logout', methods = ['GET', 'POST'])
@@ -63,10 +63,10 @@ def register():
         if (existing_user):
             # print('\nAlready Exists Error!\n', file=sys.stderr)
             flash("That name is already taken, please choose another")
-            return render_template('auth/register.html')
+            return render_template('src/auth/register.html')
         else:
             db.session.add(new_user)
             db.session.commit()
             flash("")
             return redirect(url_for('auth.login'))
-    return render_template('auth/register.html')
+    return render_template('src/auth/register.html')

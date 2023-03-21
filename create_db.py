@@ -15,3 +15,9 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
     db.session.commit()
+    role1 = Role(role="ADMIN")
+    role2 = Role(role="USER")
+    db.session.add(role1)
+    db.session.add(role2)
+    db.session.commit()
+    user1 =

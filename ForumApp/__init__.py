@@ -60,4 +60,8 @@ def create_app(config_class=Config):
         from ForumApp.posts import bp as post_bp
         app.register_blueprint(post_bp)
 
+        # Comments Blueprint
+        from ForumApp.comments import bp as comment_bp
+        app.register_blueprint(comment_bp)
+
     return app
