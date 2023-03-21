@@ -1,7 +1,8 @@
-## A basic Forum app using Flask microframework for learning purposes.
+## A basic Forum app using Flask microframeworkfor learning purposes.
 
-## EDIT:
-Added a 'Frontend' using TailwindCss.
+## UPDATE: Added a 'Frontend' using TailwindCss.
+
+# Note: This app uses the Flask Large Application structure.
 
 
 ## To Install:
