@@ -5,6 +5,17 @@
     <center>
         <div class="max-w-xs shadow-2xl">
           <form class="bg-teal-200 shadow-xl rounded px-8 pt-6 pb-8 mb-4" action="/register" method="POST" >
+            <div class="text-red-200">
+              {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                  <ul class=flashes>
+                  {% for message in messages %}
+                    <li>{{ message }}</li>
+                  {% endfor %}
+                  </ul>
+                {% endif %}
+              {% endwith %}
+            </div>
             <div class="mb-4">
               <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
                 Username

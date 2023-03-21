@@ -13,7 +13,34 @@
     </div>
 </div>
 
-
+<div class="my-20 bg-dark">
+    <center>
+        <div class="max-w-xs shadow-2xl">
+          <form class="bg-teal-200 shadow-xl rounded px-8 pt-6 pb-8 mb-4" action="/board/{{board.id}}/create" method="POST" >
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
+                Title of Post
+              </label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name = "title" id="title" type="text" placeholder="title">
+            </div>
+            <div class="mb-6">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="content" >
+                Content:
+              </label>
+              <textarea class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                        name="content" type="text" id="content" placeholder="content" rows="4" cols="20">
+              </textarea>
+                <p class="text-red-500 text-xs italic">Make sure that the post is relevant to the Board and follows the rules!!</p>
+            </div>
+            <div class="flex items-center justify-between">
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                CREATE!
+              </button>
+            </div>
+          </form>
+        </div>
+    </center>
+</div>
 
 <div class="grid grid-rows-4 grid-flow-col gap-4">
 {% for post in posts %}
