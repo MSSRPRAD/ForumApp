@@ -1,5 +1,11 @@
 A basic Forum app using Flask microframework for learning purposes.
 
+EDIT:
+Turns out I'm seriously disabled when it comes to making the frontend.
+So this is just a simple backend for a simple Forum App. Maybe I will make 
+a frontend also someday :") !
+
+
 To Install:
 
 git clone https://github.com/MSSRPRAD/ForumApp.git
