@@ -21,11 +21,15 @@
 
 
 {% for post in posts %}
-    <a href="/board/{{board.id}}/{{post.id}}" <h1> {{post.title}} </h1></a>
-    <p>{{post.date_created}}</p>
-    <p>Created By:</p>
-    <p>{{post.user_id}}</p>
-    <p></p>
+    {% for user in users %}
+        {% if user.id==post.user_id %}
+            <a href="/board/{{board.id}}/{{post.id}}"> <h1> {{post.title}} </h1></a>
+            <p>{{post.date_created}}</p>
+            <p>Created By:</p>
+            <p>{{user.username}}</p>
+            <p></p>
+        {% endif %}}
+    {% endfor %}
 {% endfor %}
 
 {% endblock %}

@@ -25,9 +25,13 @@
 <p>{{post.date_created}}</p>
 
 {% for comment in comments %}
-    <h2>{{comment.content}}</h2>
-    <p>{{comment.user_id}}</p>
-    <p>{{comment.date_created}}</p>
+    {% for user in users %}
+        {% if user.id==comment.user_id %}
+            <h2>{{comment.content}}</h2>
+            <p>{{user.username}}</p>
+            <p>{{comment.date_created}}</p>
+        {% endif %}
+    {% endfor %}
 {% endfor %}
 
 {% endblock %}

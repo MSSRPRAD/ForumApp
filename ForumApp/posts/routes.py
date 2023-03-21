@@ -25,6 +25,7 @@ def add_post(id):
         title = request.form['title']
         post.title=title
         post.board_id = id
+        post.user_id = current_user.id
         db.session.add(post)
         db.session.commit()
         posts = board.posts
@@ -37,4 +38,5 @@ def add_post(id):
 def show_board(id):
     board = Board.query.filter_by(id=id).first()
     posts = board.posts
-    return render_template('src/post/post.html', posts=posts, board = board)
+    users = User.query.all()
+    return render_template('src/post/post.html', posts=posts, board = board, users=users)

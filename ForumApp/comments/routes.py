@@ -36,4 +36,5 @@ def show_comments(boardid, postid):
     board = Board.query.filter_by(id=boardid).first()
     post = Post.query.filter_by(id=postid).first()
     comments = post.comments
-    return render_template('src/comment/comment.html', post=post,board = board, comments=comments)
+    users = User.query.all()
+    return render_template('src/comment/comment.html', post=post,board = board, comments=comments, users=users)
