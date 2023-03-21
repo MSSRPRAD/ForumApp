@@ -6,25 +6,32 @@
 
 {% block body %}
 
-<div class="bg-sky-50 aspect-square"></div>
-<div class="bg-gray-200 h-screen">
-  <h1>
+<h1>
     <div style="text-align: center;"><b>WELCOME!</b></div>
-  </h1>
-  <div class="container mx-auto w-full h-full">
-    <div class="max-w-screen-sm mx-auto w-full h-full flex flex-col items-center justify-center">
-      <div class="bg-white p-5 shadow-md w-full">
-        <h1>USERNAME:</h1>
-        <p>{{user.username}}</p>
-        <h1>ACCOUNT TYPE:</h1>
-        <p>{{user.role_id}} : {{role_name}}</p>
-        <h1>ABOUT:</h1>
-        <p>{{profile.about}}</p>
-      </div>
-    </div>
+</h1>
+
+<div class="font-sans h-screen w-full flex flex-row justify-center items-center">
+  <div class="card w-96 mx-auto bg-white  shadow-xl hover:shadow">
+     <div class="text-center mt-2 text-3xl font-medium">{{user.username}}</div>
+     <div class="text-center font-normal text-lg">About:</div>
+     <div class="px-6 text-center mt-2 font-light text-sm">
+       <p>
+         {{profile.about}}
+       </p>
+     </div>
+     <hr class="mt-8">
+<!--     <div class="flex p-4">-->
+<!--       <div class="w-1/2 text-center">-->
+<!--         <span class="font-bold">1.8 k</span> Followers-->
+<!--       </div>-->
+<!--       <div class="w-0 border border-gray-300">-->
+
+<!--       </div>-->
+<!--       <div class="w-1/2 text-center">-->
+<!--         <span class="font-bold">2.0 k</span> Following-->
+<!--       </div>-->
+<!--     </div>-->
   </div>
 </div>
-
-
 
 {% endblock %}

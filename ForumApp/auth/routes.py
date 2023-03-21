@@ -63,7 +63,7 @@ def register():
         if (existing_user):
             # print('\nAlready Exists Error!\n', file=sys.stderr)
             flash("That name is already taken, please choose another")
-            return render_template('src/auth/register.html')
+            return redirect(url_for('auth.register'))
         else:
             db.session.add(new_user)
             db.session.commit()

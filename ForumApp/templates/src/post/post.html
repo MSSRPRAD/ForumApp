@@ -6,30 +6,28 @@
 
 {% block body %}
 
-<form action="/board/{{board.id}}/create" method="POST">
-    <h1>TITLE OF POST:</h1>
-    <input type="text" name="title" id="title">
-    <h1>CONTENT:</h1>
-    <input type="text" name="content" id="content">
-    <p>CREATE!</p>
-    <input type="submit" value="Create">
-</form>
-
-<h1>{{board.name}}</h1>
-<p><b>About:</b> {{board.about}}</p>
+<div style="text-align: center;">
+    <div class="bg-teal-500 mx-auto text-red-800">
+        <b><p  class="font-black">{{board.name}}</p></b>
+        <p class="font-medium"><b>About:</b> <br>{{board.about}}</p>
+    </div>
+</div>
 
 
 
+<div class="grid grid-rows-4 grid-flow-col gap-4">
 {% for post in posts %}
     {% for user in users %}
         {% if user.id==post.user_id %}
-            <a href="/board/{{board.id}}/{{post.id}}"> <h1> {{post.title}} </h1></a>
-            <p>{{post.date_created}}</p>
-            <p>Created By:</p>
-            <p>{{user.username}}</p>
+            <div class="max-w-xs shadow-2xl bg-teal-200 rounded-lg">
+                <a href="/board/{{board.id}}/{{post.id}}"  class="font-bold text-blue-500"> <h1> {{post.title}} </h1></a>
+                <p>{{post.date_created}}</p>
+                <p class="font-semibold">Created By:</p>
+                <p class="font-semibold font-italic">{{user.username}}</p>
             <p></p>
-        {% endif %}}
+            </div>
+        {% endif %}
     {% endfor %}
 {% endfor %}
-
+</div>
 {% endblock %}

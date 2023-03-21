@@ -1,25 +1,30 @@
 {% extends "src/base.html" %}
 
 {% block body %}
-
-<div class="bg-gray-200 h-screen">
-    <div style="text-align: center;"><h1><b>LOGIN AUTHENTICATION PAGE</b></h1></div>
-    <div class="container mx-auto w-full h-full">
-      <div class="max-w-screen-sm mx-auto w-full h-full flex flex-col items-center justify-center">
-        <div class="bg-white p-5 shadow-md w-full">
-          <h1 class="text-gray-900 mb-8" style="text-align: center">Log into your account</h1>
-            {% for mesg in get_flashed_messages() %}
-              <h1 style="color: crimson">{{ mesg }}</h1>
-            {% endfor %}
-            <form action="/login" method="POST">
-               <input type="text" name="username" id="username">
-               <input type="password" name="password" id="password">
-               <input type="submit" value="Log In">
-                <div>
-                </div>
-           </form>
+<div class="my-20 bg-dark">
+    <center>
+        <div class="max-w-xs shadow-2xl">
+          <form class="bg-teal-200 shadow-xl rounded px-8 pt-6 pb-8 mb-4" action="/login" method="POST" >
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                Username
+              </label>
+              <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name = "username" id="username" type="text" placeholder="Username">
+            </div>
+            <div class="mb-6">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="password" >
+                Password
+              </label>
+              <input class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" name="password" type="password" id="password" placeholder="******************">
+              <p class="text-red-500 text-xs italic">Please choose a password.</p>
+            </div>
+            <div class="flex items-center justify-between">
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                Login
+              </button>
+            </div>
+          </form>
         </div>
-      </div>
-    </div>
-  </div>
+    </center>
+</div>
 {% endblock %}

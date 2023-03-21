@@ -5,37 +5,73 @@
 {% endblock %}
 
 {% block body %}
-
-
-<form action="/board/{{board.id}}/{{post.id}}/create" method="POST">
-    <h1>Your Comment::</h1>
-    <input type="text" name="content" id="content">
-    <p>Send!</p>
-    <input type="submit" value="Create">
-</form>
-
 {% for user in users %}
     {% if user.id == post.user_id %}
-        <h1>BOARD:</h1>
-        <p>{{board.name}}</p>
-        <h1>POST:</h1>
-        <b><p>{{post.title}}</p></b>
-        <p>{{post.content}}</p>
-        <p>Posted by:</p>
-        <p>{{user.username}}</p>
-        <p>On:</p>
-        <p>{{post.date_created}}</p>
+        <div style="text-align: center;">
+            <div class="bg-teal-500 mx-auto text-red-800">
+                <b><p  class="font-black">{{board.name}}</p></b>
+                <p class="font-medium"><b>About:</b> <br>{{board.about}}</p>
+            </div>
+            <div class="bg-green-100 mx-auto text-blue-800">
+                <b><p  class="font-black text-xl">{{post.title}}</p></b>
+                <p class="font-medium">{{post.content}}</p>
+                <p class="font-medium">Posted By:<br>{{user.username}}</p>
+                <p class="font-medium">On:<br>{{post.date_created}}</p>
+            </div>
+        </div>
     {% endif %}
 {% endfor %}
 
-{% for comment in comments %}
+{% for post in posts %}
     {% for user in users %}
-        {% if user.id==comment.user_id %}
-            <h2>{{comment.content}}</h2>
-            <p>{{user.username}}</p>
-            <p>{{comment.date_created}}</p>
+        {% if user.id==post.user_id %}
+            <div class="max-w-xs shadow-2xl bg-teal-200 rounded-lg">
+                <a href="/board/{{board.id}}/{{post.id}}"  class="font-bold text-blue-500"> <h1> {{post.title}} </h1></a>
+                <p>{{post.date_created}}</p>
+                <p class="font-semibold">Created By:</p>
+                <p class="font-semibold font-italic">{{user.username}}</p>
+            <p></p>
+            </div>
         {% endif %}
     {% endfor %}
 {% endfor %}
+
+<div class="grid grid-rows-4 grid-flow-col gap-4">
+{% for comment in comments %}
+    {% for user in users %}
+        {% if user.id==comment.user_id %}
+             <div class="max-w-xs shadow-2xl bg-teal-200 rounded-lg">
+                <p  class="font-bold text-red-800">{{comment.content}}</p>
+                <p class="font-semibold">Created By:</p>
+                <p class="font-italic">{{user.username}}</p>
+                 <p class="font-semibold">On:</p>
+                <p class="font-italic">{{comment.date_created}}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+{% endfor %}
+</div>
+
+<div class="">
+    <div class="my-20 bg-dark">
+        <center>
+            <div class="max-w-xs shadow-2xl">
+              <form class="bg-teal-200 shadow-xl rounded px-8 pt-6 pb-8 mb-4" action="/board/{{board.id}}/{{post.id}}/create" method="POST" >
+                <div class="mb-4">
+                  <label class="block text-gray-700 text-sm font-bold mb-2" for="content">
+                    Your Comment:
+                  </label>
+                  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name = "content" id="content" type="text" placeholder="content">
+                </div>
+                <div class="flex items-center justify-between">
+                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    SEND!
+                  </button>
+                </div>
+              </form>
+            </div>
+        </center>
+    </div>
+</div>
 
 {% endblock %}
