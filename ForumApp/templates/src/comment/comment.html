@@ -14,15 +14,19 @@
     <input type="submit" value="Create">
 </form>
 
-<h1>BOARD:</h1>
-<p>{{board.name}}</p>
-<h1>POST:</h1>
-<b><p>{{post.title}}</p></b>
-<p>{{post.content}}</p>
-<p>Posted by:</p>
-<p>{{post.user_id}}</p>
-<p>On:</p>
-<p>{{post.date_created}}</p>
+{% for user in users %}
+    {% if user.id == post.user_id %}
+        <h1>BOARD:</h1>
+        <p>{{board.name}}</p>
+        <h1>POST:</h1>
+        <b><p>{{post.title}}</p></b>
+        <p>{{post.content}}</p>
+        <p>Posted by:</p>
+        <p>{{user.username}}</p>
+        <p>On:</p>
+        <p>{{post.date_created}}</p>
+    {% endif %}
+{% endfor %}
 
 {% for comment in comments %}
     {% for user in users %}
