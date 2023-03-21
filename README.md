@@ -66,6 +66,8 @@ Navigate to /register
 
 ## FORUM FUNCTIONALITY:
 
+# Note: You need to be LOGGED IN to be able to create boards/posts/comments. Otherwise the code logic will break and errors will show up.
+
 Navigate to /board
 
 Navigate to /board
