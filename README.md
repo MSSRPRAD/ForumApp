@@ -1,30 +1,30 @@
-A basic Forum app using Flask microframework for learning purposes.
+## A basic Forum app using Flask microframework for learning purposes.
 
-EDIT:
+## EDIT:
 Added a 'Frontend' using TailwindCss.
 
 
-To Install:
+## To Install:
 
-git clone https://github.com/MSSRPRAD/ForumApp.git
+`git clone https://github.com/MSSRPRAD/ForumApp.git`
 
-virtualenv venv
+`cd ForumApp`
 
-source venv/bin/activate (On Bash Terminal)
+`virtualenv venv`
 
-cd ForumApp
+`source venv/bin/activate` (On Bash Terminal)
 
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
-export SECRET_KEY=SECRET_KEY
+`export SECRET_KEY=SECRET_KEY`
 
-export FLASK_ENV=development
+`export FLASK_ENV=development`
 
-export FLASK_APP=ForumApp 
+`export FLASK_APP=ForumApp`
 
--- CREATE DB --
+## -- CREATE DB --
 
-python create_db.py
+`python create_db.py`
 
 This creates an admin user with credentials:
 
@@ -38,30 +38,34 @@ username: testuser
 
 password: testuser
 
-To Run:
+To Run the Application on localhost:
 
-flask run
+`flask run`
 
-NOTE: No functionality is completely implemented yet. App is not ready.
+# NOTE: You need internet connection or the tailwindcss won't show up
 
-ADMIN FUNCTIONALITY:
+# NOTE: Just a minimum app. Many more features need to be added.
+
+## ADMIN FUNCTIONALITY:
 
 Implemented from flask_admin
 
 Navigate to '/admin/' (Logged in as Admin)
 
-LOGIN FUNCTIONALITY:
+## LOGIN FUNCTIONALITY:
 
 Navigate to /login
 
-LOGOUT FUNCTIONALITY:
+## LOGOUT FUNCTIONALITY:
 
 Navigate to /logout
 
-REGISTER FUNCTIONALITY:
+## REGISTER FUNCTIONALITY:
 
 Navigate to /register
 
-FORUM FUNCTIONALITY:
+## FORUM FUNCTIONALITY:
+
+Navigate to /board
 
 Navigate to /board
