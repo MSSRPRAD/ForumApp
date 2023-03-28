@@ -17,6 +17,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 @bp.route('/board/<int:id>/create', methods = ['GET', 'POST'])
+@login_required
 def add_post(id):
     red = '/board/' + str(id)
     board = Board.query.filter_by(id=id).first()
@@ -43,7 +44,6 @@ def add_post(id):
     return redirect(red)
 
 @bp.route('/board/<int:id>')
-@login_required
 def show_board(id):
     board = Board.query.filter_by(id=id).first()
     posts = board.posts

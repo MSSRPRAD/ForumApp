@@ -18,6 +18,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 @bp.route('/board/<int:boardid>/<int:postid>/create', methods = ['GET', 'POST'])
+@login_required
 def add_comment(boardid, postid):
     board = Board.query.filter_by(id=boardid).first()
     post = Post.query.filter_by(id=postid).first()
@@ -36,8 +37,8 @@ def add_comment(boardid, postid):
         db.session.commit()
         return redirect(red)
     return redirect(red)
+
 @bp.route('/board/<int:boardid>/<int:postid>')
-@login_required
 def show_comments(boardid, postid):
     board = Board.query.filter_by(id=boardid).first()
     post = Post.query.filter_by(id=postid).first()

@@ -10,6 +10,9 @@ from ForumApp.models.profile import Profile
 from ForumApp.models.comment import Comment
 from ForumApp.models.post import Post
 from ForumApp.models.role import Role
+from ForumApp.models.board import Board
+from ForumApp.models.notification import Notification
+
 from ForumApp.extensions import db
 
 class MyModelView(ModelView):
@@ -29,6 +32,8 @@ def create_app(config_class=Config):
     admin.add_view(MyModelView(Profile, db.session))
     admin.add_view(MyModelView(Post, db.session))
     admin.add_view(MyModelView(Comment, db.session))
+    admin.add_view(MyModelView(Board), db.session)
+    admin.add_view(MyModelView(Notification),db.session)
 
     login_manager = LoginManager(app)
 
