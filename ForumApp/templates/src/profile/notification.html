@@ -1,0 +1,19 @@
+{% extends "src/base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<div style="text-align: center;"><h1>{{user.username}}</h1></div>
+
+<div class="grid grid-rows-4 grid-flow-col gap-4">
+    {% for notification in notifications %}
+        <div class="max-w-xs shadow-2xl bg-teal-200 rounded-lg">
+            <p>{{notification.message}}</p>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

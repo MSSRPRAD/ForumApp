@@ -7,6 +7,7 @@ from ForumApp.models.user import User
 from ForumApp.models.role import Role
 from ForumApp.models.comment import Comment
 from ForumApp.models.board import Board
+from ForumApp.models.notification import Notification
 from config import Config
 from flask_bcrypt import Bcrypt
 
@@ -33,4 +34,12 @@ with app.app_context():
     user2.password=bcrypt.generate_password_hash('testuser')
     db.session.add(user1)
     db.session.add(user2)
+    profile1 = Profile()
+    profile1.user_id = 1
+    profile1.about = "Welcome Admin!"
+    profile2 = Profile()
+    profile2.user_id = 2
+    profile2.about = "Welcome TestUser!"
+    db.session.add(profile2)
+    db.session.add(profile1)
     db.session.commit()

@@ -9,6 +9,7 @@ from ForumApp.models.post import Post
 from ForumApp.models.comment import Comment
 from flask import render_template, redirect, url_for, session, request, Flask
 from ForumApp.models.board import Board
+from ForumApp.models.notification import Notification
 
 from ForumApp.extensions import db
 
@@ -27,6 +28,11 @@ def add_comment(boardid, postid):
         comment.post_id = postid
         comment.content = request.form['content']
         db.session.add(comment)
+        if current_user.id != post.user_id:
+            notification = Notification()
+            notification.user_id = post.user_id
+            notification.message= current_user.username + " has commented under your post!"
+            db.session.add(notification)
         db.session.commit()
         return redirect(red)
     return redirect(red)
