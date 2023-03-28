@@ -32,8 +32,8 @@ def create_app(config_class=Config):
     admin.add_view(MyModelView(Profile, db.session))
     admin.add_view(MyModelView(Post, db.session))
     admin.add_view(MyModelView(Comment, db.session))
-    admin.add_view(MyModelView(Board), db.session)
-    admin.add_view(MyModelView(Notification),db.session)
+    admin.add_view(MyModelView(Board, db.session))
+    admin.add_view(MyModelView(Notification,db.session))
 
     login_manager = LoginManager(app)
 
@@ -58,7 +58,7 @@ def create_app(config_class=Config):
         app.register_blueprint(profile_bp)
 
         # Board Bluepring
-        from ForumApp.board import bp as board_bp
+        from ForumApp.boards import bp as board_bp
         app.register_blueprint(board_bp)
 
         # Post Blueprint

@@ -1,4 +1,4 @@
-from ForumApp.board import bp
+from ForumApp.boards import bp
 from flask import render_template, flash
 from flask_login import login_required, login_user, LoginManager, current_user, logout_user
 from flask_bcrypt import Bcrypt
@@ -16,7 +16,7 @@ def load_user(user_id):
     return User.query.get(int(user_id))
 
 @bp.route('/board')
-def board():
+def boards():
     boards = Board.query.all()
     return render_template('src/board/board.html', boards = boards)
 
