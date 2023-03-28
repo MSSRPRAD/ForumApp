@@ -7,6 +7,7 @@ bcrypt = Bcrypt(app)
 from ForumApp.models.user import User
 from flask import render_template, redirect, url_for, session, request, Flask
 from ForumApp.models.board import Board
+from ForumApp.models.notification import Notification
 
 from ForumApp.extensions import db
 
@@ -29,12 +30,19 @@ def create_board():
         board = Board()
         board.name=name
         board.about=about
+        board.user_id = current_user.id
 
         existing_board = Board.query.filter_by(name=name).first()
         if existing_board:
             flash("That name is already taken, please choose another")
             return redirect(red)
         else:
+
+            notif = Notification()
+            notif.user_id = 1
+            notif.message = current_user.username + " has created a board with the name - "+board.name
+            db.session.add(notif)
+
             db.session.add(board)
             db.session.commit()
             return redirect(red)

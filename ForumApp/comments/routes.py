@@ -31,7 +31,7 @@ def add_comment(boardid, postid):
         if current_user.id != post.user_id:
             notification = Notification()
             notification.user_id = post.user_id
-            notification.message= current_user.username + " has commented under your post!"
+            notification.message= current_user.username + " has commented under your post - " + post.title + " !"
             db.session.add(notification)
         db.session.commit()
         return redirect(red)

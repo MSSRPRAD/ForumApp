@@ -12,3 +12,4 @@ class Board(db.Model):
     about = db.Column(db.String(1000), nullable = False)
     posts = db.relationship('Post', backref = 'board')
     date_created = db.Column(db.DateTime, default = datetime.datetime.utcnow())
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

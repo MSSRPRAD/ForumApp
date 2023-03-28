@@ -8,6 +8,7 @@ from ForumApp.models.post import Post
 from ForumApp.models.comment import Comment
 from ForumApp.models.profile import Profile
 from ForumApp.models.notification import Notification
+from ForumApp.models.board import Board
 
 app = Flask(__name__)
 
@@ -19,4 +20,5 @@ class User(db.Model, UserMixin):
     profile = db.relationship('Profile', backref='user', uselist = False)
     notifications = db.relationship('Notification', backref='user')
     posts = db.relationship('Post', backref = 'user')
+    boards = db.relationship('Board', backref='user')
     comments = db.relationship('Comment', backref = 'user')

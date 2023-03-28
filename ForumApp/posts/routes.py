@@ -8,6 +8,7 @@ from ForumApp.models.user import User
 from ForumApp.models.post import Post
 from flask import render_template, redirect, url_for, session, request, Flask
 from ForumApp.models.board import Board
+from ForumApp.models.notification import Notification
 
 from ForumApp.extensions import db
 
@@ -27,6 +28,14 @@ def add_post(id):
         post.board_id = id
         post.user_id = current_user.id
         db.session.add(post)
+
+
+        if board.user_id != current_user.id:
+            notif = Notification()
+            notif.user_id = board.user_id
+            notif.message = current_user.username + " has created a post titled - " + post.title +" in your board - " + board.name
+            db.session.add(notif)
+
         db.session.commit()
         posts = board.posts
         return redirect(red)
