@@ -1,4 +1,3 @@
-import dbus.server
 from sqlalchemy import desc, asc
 
 from ForumApp.models.role import Role
