@@ -9,7 +9,7 @@ from ForumApp.models.post import Post
 from flask import render_template, redirect, url_for, session, request, Flask
 from ForumApp.models.board import Board
 from ForumApp.models.notification import Notification
-
+from ForumApp import ckeditor
 from ForumApp.extensions import db
 
 @app.login_manager.user_loader
@@ -23,7 +23,7 @@ def add_post(id):
     board = Board.query.filter_by(id=id).first()
     if request.method == 'POST':
         post = Post()
-        post.content = request.form['content']
+        post.content = request.form['ckeditor']
         title = request.form['title']
         post.title=title
         post.board_id = id

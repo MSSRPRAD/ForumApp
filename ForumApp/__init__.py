@@ -15,6 +15,11 @@ from ForumApp.models.notification import Notification
 
 from ForumApp.extensions import db
 
+from flask_ckeditor import CKEditor
+
+ckeditor = CKEditor()
+
+
 class MyModelView(ModelView):
     def is_accessible(self):
         if current_user.is_authenticated and current_user.role_id == 1:
@@ -25,7 +30,7 @@ class MyModelView(ModelView):
 def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
-
+    ckeditor.init_app(app)
     admin = Admin(app)
     admin.add_view(MyModelView(User, db.session))
     admin.add_view(MyModelView(Role, db.session))
