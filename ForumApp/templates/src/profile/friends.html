@@ -14,6 +14,9 @@
     {% for friend in friends %}
         <div class="max-w-xs shadow-2xl bg-teal-200 rounded-lg">
             <p>{{friend.username}}</p>
+            <a href = "/users/message/{{friend.id}}"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Message Friend
+        </button></a>
         </div>
     {% endfor %}
 </div>

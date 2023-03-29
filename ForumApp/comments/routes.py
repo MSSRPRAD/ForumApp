@@ -10,7 +10,6 @@ from ForumApp.models.comment import Comment
 from flask import render_template, redirect, url_for, session, request, Flask
 from ForumApp.models.board import Board
 from ForumApp.models.notification import Notification
-
 from ForumApp.extensions import db
 
 @app.login_manager.user_loader

@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 
 from flask_login import UserMixin
 from flask import Flask
@@ -52,4 +53,11 @@ class User(db.Model, UserMixin):
 class FriendRequest(db.Model):
     requesting_user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     receiving_user_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-    status = db.Column(db.Integer)
+    date_created = db.Column(db.DateTime,default=datetime.utcnow)
+
+class Message(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    sender_user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    receiver_user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    date_sent = db.Column(db.DateTime, default=datetime.utcnow)
+    content = db.Column(db.String(200), nullable=False)

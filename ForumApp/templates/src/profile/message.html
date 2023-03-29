@@ -1,0 +1,47 @@
+{% extends "src/base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+{% for message in messages %}
+    {% if message.sender_user_id == current_user.id %}
+        <div class="items-start">
+            <div class="chat-bubble chat-bubble-info"> <p class="text-red-500">{{ message.content }} </p></div>
+            {{ message.date_sent }}
+        </div>
+
+    {% endif %}
+    {% if message.sender_user_id == receiver.id %}
+        <div class="items-end">
+            <div class="chat-bubble chat-bubble-accent"><p class="text-blue-500">{{ message.content }}</p></div>
+            {{ message.date_sent }}
+        </div>
+
+    {% endif %}
+{% endfor %}
+
+
+<div class="">
+    <div class="my-20 bg-dark">
+        <div style="text-align: center;">
+            <div class="max-w-xs shadow-2xl">
+              <form class="bg-teal-200 shadow-xl rounded px-8 pt-6 pb-8 mb-4" action="/users/message/{{receiver.id}}/send" method="POST" >
+                <div class="mb-4">
+                  <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name = "content" id="content" type="text" placeholder="content">
+                </div>
+                <div class="flex items-center justify-between">
+                  <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    SEND!
+                  </button>
+                </div>
+              </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

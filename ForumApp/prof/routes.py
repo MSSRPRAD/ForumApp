@@ -1,17 +1,22 @@
 import dbus.server
+from sqlalchemy import desc, asc
 
 from ForumApp.models.role import Role
 from ForumApp.prof import bp
 from flask import render_template, redirect
 from flask_login import login_required, login_user, LoginManager, current_user, logout_user
 from flask_bcrypt import Bcrypt
+from flask import render_template, redirect, url_for, session, request, Flask
+
 from flask import current_app as app
 bcrypt = Bcrypt(app)
 from ForumApp.models.user import User
 from ForumApp.models.profile import Profile
 from ForumApp.models.notification import Notification
 from ForumApp.models.user import FriendRequest
+from ForumApp.models.user import Message
 from ForumApp import db
+from flask import request
 
 @app.login_manager.user_loader
 def load_user(user_id):
@@ -51,17 +56,16 @@ def view_user():
 
 @bp.route('/users/request/<int:id>/')
 @login_required
-def request(id):
+def friendRequest(id):
     existing = FriendRequest.query.filter_by(requesting_user_id=current_user.id, receiving_user_id=id).first()
     if existing:
         url = '/users/'+str(id)
         return redirect(url)
     else:
-        friendRequest = FriendRequest()
-        friendRequest.requesting_user_id = current_user.id
-        friendRequest.receiving_user_id = id
-        friendRequest.status = 0
-        db.session.add(friendRequest)
+        fRequest = FriendRequest()
+        fRequest.requesting_user_id = current_user.id
+        fRequest.receiving_user_id = id
+        db.session.add(fRequest)
         db.session.commit()
         notif = Notification()
         notif.user_id = id
@@ -81,11 +85,33 @@ def show_friends():
 @bp.route('/users/request/<int:id>/accept')
 @login_required
 def accept_request(id):
-    request = FriendRequest.query.filter_by(requesting_user_id=id, receiving_user_id = current_user.id).first()
-    db.session.delete(request)
+    friendRequest = FriendRequest.query.filter_by(requesting_user_id=id, receiving_user_id = current_user.id).first()
+    db.session.delete(friendRequest)
     db.session.commit()
     user = User.query.filter_by(id=id).first()
     user.friends.append(current_user)
     current_user.friends.append(user)
     db.session.commit()
     return redirect('/profile/friends')
+
+
+@bp.route('/users/message/<int:id>')
+@login_required
+def message(id):
+    if current_user.id != id and (User.query.filter_by(id=id).first() in current_user.friends):
+        user = User.query.filter_by(id=id).first()
+        messages = Message.query.order_by(asc(Message.date_sent))
+        return render_template('src/profile/message.html', current_user = current_user, receiver = user, messages=messages)
+
+@bp.route('/users/message/<int:id>/send',methods = ['GET', 'POST'])
+@login_required
+def send_message(id):
+    if request.method == 'POST':
+        message = Message()
+        message.sender_user_id = current_user.id
+        message.receiver_user_id = id
+        message.content = request.form['content']
+        db.session.add(message)
+        db.session.commit()
+        url = '/users/message/' + str(id)
+    return redirect(url)
