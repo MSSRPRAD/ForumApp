@@ -8,7 +8,7 @@ from ForumApp.models.user import User
 from flask import render_template, redirect, url_for, session, request, Flask
 from ForumApp.models.board import Board
 from ForumApp.models.notification import Notification
-
+from ForumApp import ckeditor
 from ForumApp.extensions import db
 
 @app.login_manager.user_loader
@@ -26,7 +26,7 @@ def create_board():
     red = '/board'
     if request.method == 'POST':
         name = request.form['name']
-        about = request.form['about']
+        about = request.form['ckeditor']
         board = Board()
         board.name=name
         board.about=about

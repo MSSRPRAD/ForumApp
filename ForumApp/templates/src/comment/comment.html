@@ -5,16 +5,18 @@
 {% endblock %}
 
 {% block body %}
+{{ ckeditor.load() }}
+
 {% for user in users %}
     {% if user.id == post.user_id %}
         <div style="text-align: center;">
             <div class="bg-teal-500 mx-auto text-red-800">
                 <b><p  class="font-black">{{board.name}}</p></b>
-                <p class="font-medium"><b>About:</b> <br>{{board.about}}</p>
+                <p class="font-medium"><b>About:</b> <br>{{board.about | safe}}</p>
             </div>
             <div class="bg-green-100 mx-auto text-blue-800">
                 <b><p  class="font-black text-xl">{{post.title}}</p></b>
-                <p class="font-medium">{{post.content}}</p>
+                <p class="font-medium">{{post.content | safe}}</p>
                 <p class="font-medium">Posted By:<br>{{user.username}}</p>
                 <p class="font-medium">On:<br>{{post.date_created}}</p>
             </div>

@@ -5,17 +5,18 @@
 {% endblock %}
 
 {% block body %}
+{{ ckeditor.load() }}
 
 <div style="text-align: center;">
     <div class="bg-teal-500 mx-auto text-red-800">
         <b><p  class="font-black">{{board.name}}</p></b>
-        <p class="font-medium"><b>About:</b> <br>{{board.about}}</p>
+        <p class="font-medium"><b>About:</b> <br>{{board.about | safe}}</p>
     </div>
 </div>
 
 <div class="my-20 bg-dark">
     <center>
-        <div class="max-w-xs shadow-2xl">
+        <div class="shadow-2xl">
           <form class="bg-teal-200 shadow-xl rounded px-8 pt-6 pb-8 mb-4" action="/board/{{board.id}}/create" method="POST" >
             <div class="mb-4">
               <label class="block text-gray-700 text-sm font-bold mb-2" for="title">
@@ -24,12 +25,10 @@
               <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name = "title" id="title" type="text" placeholder="title">
             </div>
             <div class="mb-6">
-              <label class="block text-gray-700 text-sm font-bold mb-2" for="content" >
+              <label class="block text-gray-700 text-sm font-bold mb-2" >
                 Content:
               </label>
-              <textarea class="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                        name="content" type="text" id="content" placeholder="content" rows="4" cols="20">
-              </textarea>
+              {{ ckeditor.create() }}
                 <p class="text-red-500 text-xs italic">Make sure that the post is relevant to the Board and follows the rules!!</p>
             </div>
             <div class="flex items-center justify-between">
