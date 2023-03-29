@@ -37,6 +37,14 @@ def add_post(id):
             notif.message = current_user.username + " has created a post titled - " + post.title +" in your board - " + board.name
             db.session.add(notif)
 
+            friends = current_user.friends
+            for friend in friends:
+                if friend.id != board.user_id:
+                    notif = Notification()
+                    notif.user_id = friend.id
+                    notif.message = "Your friend " + current_user.username + " has created a post titled - " + post.title + " in the board - " + board.name
+                    db.session.add(notif)
+
         db.session.commit()
         posts = board.posts
         return redirect(red)

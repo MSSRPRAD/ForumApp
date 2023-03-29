@@ -43,6 +43,13 @@ def create_board():
             notif.message = current_user.username + " has created a board with the name - "+board.name
             db.session.add(notif)
 
+            friends = current_user.friends
+            for friend in friends:
+                notif = Notification()
+                notif.user_id = friend.user_id
+                notif.message = "Your friend " + current_user.username + " has created a board with the name - " + board.name
+                db.session.add(notif)
+
             db.session.add(board)
             db.session.commit()
             return redirect(red)
