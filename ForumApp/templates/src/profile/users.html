@@ -1,0 +1,17 @@
+{% extends "src/base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<div class="grid grid-rows-4 grid-flow-col gap-4">
+    {% for user in users %}
+        <div class="max-w-xs shadow-2xl bg-teal-200 rounded-lg">
+            <a href="/users/{{user.id}}"><p>{{user.username}}</p></a>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

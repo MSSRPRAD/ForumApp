@@ -1,0 +1,38 @@
+{% extends "src/base.html" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+
+<div style="text-align: center;"><h1>{{current_user.username}}</h1></div>
+
+<h1>FRIENDS:</h1>
+
+<div class="grid grid-rows-4 grid-flow-col gap-4">
+    {% for friend in friends %}
+        <div class="max-w-xs shadow-2xl bg-teal-200 rounded-lg">
+            <p>{{friend.username}}</p>
+        </div>
+    {% endfor %}
+</div>
+
+<h1>REQUESTS:</h1>
+
+<div class="grid grid-rows-4 grid-flow-col gap-4">
+    {% for request in requests %}
+        {% for user in users %}
+            {% if user.id == request.requesting_user_id %}
+                <div class="max-w-xs shadow-2xl bg-teal-200 rounded-lg">
+                    <p>{{user.username}} wants to be friends with you!</p>
+                </div>
+                <a href = "/users/request/{{user.id}}/accept"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    Accept {{user.username}}'s request.
+                </button></a>
+            {% endif %}
+        {% endfor %}
+    {% endfor %}
+</div>
+
+{% endblock %}
