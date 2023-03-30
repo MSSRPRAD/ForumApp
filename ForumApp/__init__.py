@@ -1,10 +1,10 @@
 from flask import Flask, session
-from flask_babel import Babel
 from flask_login import LoginManager, current_user
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from config import Config
 from ForumApp.extensions import db
+from flask_babel import Babel
 from ForumApp.models.user import User
 from ForumApp.models.profile import Profile
 from ForumApp.models.comment import Comment
