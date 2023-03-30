@@ -1,10 +1,10 @@
 from flask import Flask, session
+from flask_babel import Babel
 from flask_login import LoginManager, current_user
 from flask_admin import Admin
 from flask_admin.contrib.sqla import ModelView
 from config import Config
 from ForumApp.extensions import db
-
 from ForumApp.models.user import User
 from ForumApp.models.profile import Profile
 from ForumApp.models.comment import Comment
@@ -31,6 +31,7 @@ def create_app(config_class=Config):
     app = Flask(__name__)
     app.config.from_object(config_class)
     ckeditor.init_app(app)
+    babel = Babel(app)
     admin = Admin(app)
     admin.add_view(MyModelView(User, db.session))
     admin.add_view(MyModelView(Role, db.session))

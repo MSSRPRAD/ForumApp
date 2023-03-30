@@ -6,7 +6,8 @@ from flask import render_template, redirect
 from flask_login import login_required, login_user, LoginManager, current_user, logout_user
 from flask_bcrypt import Bcrypt
 from flask import render_template, redirect, url_for, session, request, Flask
-
+from sqlalchemy import or_
+from sqlalchemy import and_
 from flask import current_app as app
 bcrypt = Bcrypt(app)
 from ForumApp.models.user import User
@@ -99,7 +100,13 @@ def accept_request(id):
 def message(id):
     if current_user.id != id and (User.query.filter_by(id=id).first() in current_user.friends):
         user = User.query.filter_by(id=id).first()
-        messages = Message.query.order_by(asc(Message.date_sent))
+        messages = Message.query.order_by(asc(Message.date_sent)).filter(
+            or_(
+                and_(Message.sender_user_id==current_user.id, Message.receiver_user_id==user.id)
+                ,
+                and_(Message.sender_user_id==user.id, Message.receiver_user_id==current_user.id)
+            )
+        ).all()
         return render_template('src/profile/message.html', current_user = current_user, receiver = user, messages=messages)
 
 @bp.route('/users/message/<int:id>/send',methods = ['GET', 'POST'])
